@@ -1,0 +1,710 @@
+.my-timesheets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.timesheet-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.stat-card .stat-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.stat-icon.total {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--primary-color);
+}
+
+.stat-icon.billable {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stat-icon.submitted {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.stat-icon.approved {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.timesheet-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.view-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.view-tab {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: none;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+.view-tab:hover {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+}
+
+.view-tab.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.period-controls {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.week-select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background-color: var(--surface-color);
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.week-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.export-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.export-btn:hover {
+  background-color: var(--background-color);
+  border-color: var(--primary-light);
+}
+
+.timesheet-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: var(--spacing-xl);
+}
+
+.timesheet-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.add-entry-card,
+.weekly-summary-card {
+  position: sticky;
+  top: var(--spacing-xl);
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  transition: var(--transition-base);
+  background-color: var(--surface-color);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: var(--transition-base);
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.add-entry-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-base);
+  margin-top: var(--spacing-sm);
+}
+
+.add-entry-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.add-entry-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-date {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.summary-hours {
+  font-size: var(--font-size-sm);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.timesheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.timesheet-table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.timesheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.timesheet-table th {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.timesheet-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.timesheet-table tbody tr:hover {
+  background-color: var(--background-color);
+}
+
+.timesheet-table tfoot tr {
+  background-color: var(--background-color);
+  font-weight: 600;
+}
+
+.timesheet-table tfoot td {
+  border-top: 2px solid var(--border-color);
+  border-bottom: none;
+}
+
+.date-cell {
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.project-cell {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.task-cell {
+  color: var(--text-secondary);
+}
+
+.description-cell {
+  max-width: 250px;
+}
+
+.description-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.hours-cell {
+  text-align: center;
+}
+
+.hours-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  min-width: 60px;
+}
+
+.billable-cell {
+  text-align: center;
+}
+
+.billable-tag {
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.billable-tag.billable {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.billable-tag.non-billable {
+  background-color: rgba(148, 163, 184, 0.1);
+  color: var(--text-tertiary);
+}
+
+.status-cell {
+  text-align: center;
+}
+
+.status-tag {
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.actions-cell {
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+.edit-btn,
+.delete-btn,
+.view-btn {
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.edit-btn:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.delete-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+
+.view-btn:hover {
+  background-color: var(--background-color);
+  border-color: var(--text-tertiary);
+}
+
+.empty-cell {
+  text-align: center;
+  padding: var(--spacing-2xl) !important;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.empty-icon {
+  font-size: 48px;
+  opacity: 0.5;
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-text {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.empty-subtext {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.total-label {
+  text-align: right;
+  color: var(--text-primary);
+}
+
+.total-hours {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: var(--font-size-base);
+}
+
+.timesheet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.status-legend {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.legend-dot.draft {
+  background-color: var(--warning-color);
+}
+
+.legend-dot.submitted {
+  background-color: var(--primary-color);
+}
+
+.legend-dot.approved {
+  background-color: var(--success-color);
+}
+
+.footer-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.save-btn,
+.submit-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-base);
+  border: 1px solid var(--border-color);
+}
+
+.save-btn {
+  background: none;
+  color: var(--text-secondary);
+}
+
+.save-btn:hover {
+  background-color: var(--background-color);
+  border-color: var(--text-tertiary);
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.timesheet-notes .notes-textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  resize: vertical;
+  min-height: 100px;
+  margin-bottom: var(--spacing-md);
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.notes-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-notes-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.save-notes-btn:hover {
+  background-color: var(--surface-color);
+  border-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .timesheet-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .add-entry-card,
+  .weekly-summary-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .timesheet-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  
+  .view-tabs {
+    order: 2;
+    justify-content: center;
+  }
+  
+  .period-controls {
+    order: 1;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .week-select,
+  .export-btn {
+    width: 100%;
+  }
+  
+  .timesheet-table {
+    font-size: var(--font-size-xs);
+  }
+  
+  .timesheet-table th,
+  .timesheet-table td {
+    padding: var(--spacing-sm);
+  }
+  
+  .timesheet-footer {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: stretch;
+  }
+  
+  .status-legend {
+    justify-content: center;
+  }
+  
+  .footer-actions {
+    flex-direction: column;
+  }
+  
+  .save-btn,
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .timesheet-table {
+    display: block;
+  }
+  
+  .timesheet-table thead {
+    display: none;
+  }
+  
+  .timesheet-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  .timesheet-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+    border-bottom: none;
+  }
+  
+  .timesheet-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: var(--spacing-sm);
+  }
+  
+  .timesheet-table .description-content {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  
+  .hours-badge {
+    min-width: auto;
+    padding: 2px 8px;
+  }
+}
