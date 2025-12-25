@@ -24,7 +24,7 @@ const AppRoutes = () => {
 
       {isAuthenticated ? (
         <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<Navigate to="/dashboard" replace />} />
+          <Route index element={<Navigate to="/login" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="my-projects" element={<MyProjects />} />
