@@ -7,15 +7,16 @@ const Sidebar = () => {
 
   const menuItems = [
     { path: '/dashboard', icon: '📊', label: 'Dashboard' },
-    { path: '/my-courses', icon: '📚', label: 'My Courses' },
-    { path: '/my-projects', icon: '🚀', label: 'My Projects' },
-    { path: '/my-timesheets', icon: '⏱️', label: 'My Timesheets' },
-    { path: '/my-interviews', icon: '💼', label: 'My Interviews' },
-    { path: '/achievements', icon: '🏆', label: 'Achievements' },
-    { path: '/daily-goals', icon: '🎯', label: 'Daily Goals' },
-    { path: '/announcements', icon: '📢', label: 'Announcements' },
-    { path: '/my-profile', icon: '👤', label: 'My Profile' },
+    { path: 'my-courses', icon: '📚', label: 'My Courses' },
+    { path: 'my-projects', icon: '🚀', label: 'My Projects' },
+    { path: 'my-timesheets', icon: '⏱️', label: 'My Timesheets' },
+    { path: 'my-interviews', icon: '💼', label: 'My Interviews' },
+    { path: 'achievements', icon: '🏆', label: 'Achievements' },
+    { path: 'daily-goals', icon: '🎯', label: 'Daily Goals' },
+    { path: 'announcements', icon: '📢', label: 'Announcements' },
+    { path: 'my-profile', icon: '👤', label: 'My Profile' },
   ];
+
 
   return (
     <aside className="sidebar">
@@ -32,7 +33,8 @@ const Sidebar = () => {
             <li key={item.path} className="nav-item">
               <NavLink
                 to={item.path}
-                className={({ isActive }) => 
+                end={item.path === '/dashboard'}
+                className={({ isActive }) =>
                   `nav-link ${isActive ? 'active' : ''}`
                 }
               >

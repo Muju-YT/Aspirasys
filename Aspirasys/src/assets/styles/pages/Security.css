@@ -79,7 +79,7 @@
 .form-label {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--text-primary);
+  color: white;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);

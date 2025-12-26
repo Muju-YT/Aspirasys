@@ -126,7 +126,7 @@
 .calendar-card {
   height: fit-content;
   position: sticky;
-  top: var(--spacing-xl);
+  top: 100px;
 }
 
 .calendar-view {
