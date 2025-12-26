@@ -35,9 +35,7 @@ const Navbar = () => {
         <div className="navbar-left">
           <h1 className="page-title">{currentTitle}</h1>
           <div className="breadcrumb">
-            <span className="breadcrumb-item">Home</span>
-            <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-item active">{currentTitle}</span>
+            
           </div>
         </div>
 
