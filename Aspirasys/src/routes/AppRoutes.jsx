@@ -16,8 +16,9 @@ import Security from "../pages/Security";
 
 const AppRoutes = () => {
   // TEMP: replace later with real auth (context / token)
-  const isAuthenticated =
-    localStorage.getItem("isAuthenticated") === "true";
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  console.log('isAuthenticated:', isAuthenticated);
+
 
   return (
     <Routes>
