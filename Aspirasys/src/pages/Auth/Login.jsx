@@ -54,39 +54,39 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
-    
+
     // Add colorful loading effect
     setTimeout(() => {
       setIsLoading(false);
-      
+
       // For demo purposes, accept any email/password
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userEmail', formData.email);
       localStorage.setItem('userName', formData.email.split('@')[0]);
-      
+
       // Add success animation before navigation
       const btn = document.querySelector('.login-btn-gradient');
       if (btn) {
@@ -104,7 +104,7 @@ const Login = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    
+
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -121,7 +121,7 @@ const Login = () => {
       </div>
     `;
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
       notification.classList.add('show');
       setTimeout(() => {
@@ -133,17 +133,20 @@ const Login = () => {
 
   const handleSSOLogin = (provider) => {
     setIsLoading(true);
-    
+
     setTimeout(() => {
       setIsLoading(false);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userEmail', `user@${provider}.com`);
       localStorage.setItem('userName', `${provider} User`);
-      
+
       const btn = document.querySelector(`.gradient-${provider}`);
       if (btn) {
         btn.classList.add('success');
-        setTimeout(() => navigate('/dashboard'), 1000);
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 1000);
+
       } else {
         navigate('/dashboard');
       }
@@ -155,8 +158,8 @@ const Login = () => {
       {/* Animated background */}
       <div className="animated-background">
         {[...Array(8)].map((_, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className="floating-orb"
             style={{
               '--delay': `${i * 0.5}s`,
@@ -199,14 +202,14 @@ const Login = () => {
                 <p className="brand-subtitle">Elevate Your Career Journey</p>
               </div>
             </div>
-            
+
             <div className="tagline-container">
               <h2 className="tagline">
                 Where <span className="tagline-highlight">ambition</span> meets{' '}
                 <span className="tagline-highlight">opportunity</span>
               </h2>
               <p className="tagline-description">
-                Join thousands of professionals accelerating their careers with our 
+                Join thousands of professionals accelerating their careers with our
                 immersive learning platform. Transform your potential into achievement.
               </p>
             </div>
@@ -214,7 +217,7 @@ const Login = () => {
 
           {/* Feature Carousel */}
           <div className="feature-carousel">
-            <div 
+            <div
               className="feature-display"
               style={{ background: features[activeFeature].gradient }}
             >
@@ -225,7 +228,7 @@ const Login = () => {
               </div>
               <div className="feature-glow"></div>
             </div>
-            
+
             <div className="feature-indicators">
               {features.map((feature, index) => (
                 <button
@@ -254,7 +257,7 @@ const Login = () => {
                 <div className="stat-label">Active Learners</div>
               </div>
             </div>
-            
+
             <div className="stat-card" style={{ '--card-color': '#10B981' }}>
               <div className="stat-icon-wrapper">
                 <span className="stat-icon">📚</span>
@@ -265,7 +268,7 @@ const Login = () => {
                 <div className="stat-label">Premium Courses</div>
               </div>
             </div>
-            
+
             <div className="stat-card" style={{ '--card-color': '#F59E0B' }}>
               <div className="stat-icon-wrapper">
                 <span className="stat-icon">🎯</span>
@@ -299,7 +302,7 @@ const Login = () => {
               {/* Email Field */}
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
-                  <span className="label-icon animate-pulse">📧</span> 
+                  <span className="label-icon animate-pulse">📧</span>
                   <span className="label-text">Email Address</span>
                 </label>
                 <div className="input-container">
@@ -315,7 +318,7 @@ const Login = () => {
                   />
                   <div className="input-decoration"></div>
                   {formData.email && (
-                    <button 
+                    <button
                       type="button"
                       className="clear-btn"
                       onClick={() => setFormData(prev => ({ ...prev, email: '' }))}
@@ -327,7 +330,7 @@ const Login = () => {
                 </div>
                 {errors.email && (
                   <div className="error-message animate-shake">
-                    <span className="error-icon">⚠️</span> 
+                    <span className="error-icon">⚠️</span>
                     <span className="error-text">{errors.email}</span>
                   </div>
                 )}
@@ -337,7 +340,7 @@ const Login = () => {
               <div className="form-group">
                 <div className="password-header">
                   <label htmlFor="password" className="form-label">
-                    <span className="label-icon animate-pulse">🔑</span> 
+                    <span className="label-icon animate-pulse">🔑</span>
                     <span className="label-text">Password</span>
                   </label>
                   <button
@@ -346,7 +349,7 @@ const Login = () => {
                     onClick={handleForgotPassword}
                     disabled={isLoading}
                   >
-                    <span className="forgot-icon">🔓</span> 
+                    <span className="forgot-icon">🔓</span>
                     <span className="forgot-text">Forgot Password?</span>
                   </button>
                 </div>
@@ -374,19 +377,19 @@ const Login = () => {
                 </div>
                 {errors.password && (
                   <div className="error-message animate-shake">
-                    <span className="error-icon">⚠️</span> 
+                    <span className="error-icon">⚠️</span>
                     <span className="error-text">{errors.password}</span>
                   </div>
                 )}
                 <div className="password-strength">
-                  <div 
-                    className="strength-bar" 
+                  <div
+                    className="strength-bar"
                     style={{
                       width: `${Math.min(formData.password.length * 10, 100)}%`,
                       background: `linear-gradient(90deg, 
-                        ${formData.password.length >= 8 ? '#10B981' : 
+                        ${formData.password.length >= 8 ? '#10B981' :
                           formData.password.length >= 6 ? '#F59E0B' : '#EF4444'}, 
-                        ${formData.password.length >= 8 ? '#34D399' : 
+                        ${formData.password.length >= 8 ? '#34D399' :
                           formData.password.length >= 6 ? '#FBBF24' : '#DC2626'})`
                     }}
                   ></div>
@@ -452,7 +455,7 @@ const Login = () => {
                   </span>
                   <span className="sso-text">Google</span>
                 </button>
-                
+
                 <button
                   type="button"
                   className="sso-btn microsoft"
@@ -464,7 +467,7 @@ const Login = () => {
                   </span>
                   <span className="sso-text">Microsoft</span>
                 </button>
-                
+
                 <button
                   type="button"
                   className="sso-btn linkedin"
@@ -487,7 +490,7 @@ const Login = () => {
                     <span className="signup-text">Request Access</span>
                   </Link>
                 </p>
-                
+
                 <div className="support-section">
                   <div className="support-icon">💬</div>
                   <div className="support-content">
@@ -528,8 +531,8 @@ const Login = () => {
       {/* Floating particles */}
       <div className="floating-particles">
         {[...Array(15)].map((_, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className="particle"
             style={{
               '--delay': `${i * 0.3}s`,

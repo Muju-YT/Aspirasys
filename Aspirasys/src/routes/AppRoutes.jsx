@@ -15,10 +15,7 @@ import Settings from "../pages/Settings";
 import Security from "../pages/Security";
 
 const AppRoutes = () => {
-  // TEMP: replace later with real auth (context / token)
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  console.log('isAuthenticated:', isAuthenticated);
-
+  const checkAuth = () => localStorage.getItem("isAuthenticated") === "true";
 
   return (
     <Routes>
@@ -30,13 +27,9 @@ const AppRoutes = () => {
 
       {/* Protected Dashboard */}
       <Route
-        path="/dashboard"
+        path="/dashboard/*"
         element={
-          isAuthenticated ? (
-            <DashboardLayout />
-          ) : (
-            <Navigate to="/login" replace />
-          )
+          checkAuth() ? <DashboardLayout /> : <Navigate to="/login" replace />
         }
       >
         <Route index element={<Dashboard />} />
