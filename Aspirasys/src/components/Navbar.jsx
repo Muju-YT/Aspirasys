@@ -35,12 +35,12 @@ const Navbar = () => {
         <div className="navbar-left">
           <h1 className="page-title">{currentTitle}</h1>
           <div className="breadcrumb">
-            
+
           </div>
         </div>
 
         <div className="navbar-right">
-          <button 
+          <button
             className="notification-btn"
             onClick={() => setHasNotifications(false)}
             aria-label="Notifications"
@@ -50,7 +50,7 @@ const Navbar = () => {
           </button>
 
           <div className="profile-dropdown">
-            <button 
+            <button
               className="profile-btn"
               onClick={() => setIsProfileOpen(!isProfileOpen)}
               aria-label="User Profile"
@@ -77,15 +77,36 @@ const Navbar = () => {
                 <div className="dropdown-divider"></div>
 
                 {/* Navigation buttons */}
-                <button className="dropdown-item" onClick={() => { navigate('/my-profile'); setIsProfileOpen(false); }}>
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    navigate('/dashboard/my-profile');
+                    setIsProfileOpen(false);
+                  }}
+                >
                   <span>👤</span> My Profile
                 </button>
-                <button className="dropdown-item" onClick={() => { navigate('/settings'); setIsProfileOpen(false); }}>
+
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    navigate('/dashboard/settings');
+                    setIsProfileOpen(false);
+                  }}
+                >
                   <span>⚙️</span> Settings
                 </button>
-                <button className="dropdown-item" onClick={() => { navigate('/security'); setIsProfileOpen(false); }}>
+
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    navigate('/dashboard/security');
+                    setIsProfileOpen(false);
+                  }}
+                >
                   <span>🛡️</span> Security
                 </button>
+
 
                 <div className="dropdown-divider"></div>
 
